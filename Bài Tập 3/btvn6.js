@@ -11,15 +11,13 @@ function getValidNumber(message, min, max) {
         value = +prompt(message);
     } while (!Number.isInteger(value) || value < min || value > max);
     return value;
-}
-do {
-    choice = prompt("Có khiếu nại/ phản hồi mới từ bạn đọc không? (có/không)")
-        .trim()
-        .toLowerCase();
-    if (choice !== "có" && choice !== "không") {
-        alert("Lựa chọn không phù hợp. Hãy nhập 'có' hoặc 'không'");
-        continue;
     }
+    do {
+        choice = prompt("Có khiếu nại/ phản hồi mới từ bạn đọc không? (có/không)").trim().toLowerCase();
+        if (choice !== "có" && choice !== "không") {
+            alert("Lựa chọn không phù hợp. Hãy nhập 'có' hoặc 'không'");
+            continue;
+        }
     if (choice === "có") {
         let yourName;
         do {

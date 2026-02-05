@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     
+    <script>
+        // let myArray = [1, "a", true, undefined, [1, 2, 3]];
+        // console.log(myArray);
+        // // 2 mảng sự dụng chung 1 địa chỉ trong bộ nhớ
+        // let array = myArray;
+        // array[0] = "Phần tử mới"
+        // console.log(myArray == array);
+        // console.log("myArr:", myArray);
+
+        // Các thao tác với mảng CRUD
+        // let myArr = [1, 2, 3, 4, 5];
+        // // // Thao tác đọc 
+        // // for (let i in myArr) {
+        // //     console.log(`Chỉ số của phần tử là ${i}`);
+        // // }
+        // // for (let element of myArr) {
+        // //     console.log(`Giá trị của phần tử là ${element}`);
+        // // }
+        // // Thao tác thêm phần tử
+        // // Thêm vào cuối
+        // myArr.push(20);
+        // console.log(myArr);
+        // Thêm vào đầu
+        // myArr.unshift("Đây là giá trị đầu");
+        // console.log("Đây là giá trị đầu mảng", 4, 5, 6);
+        // Thêm vào vị tríbất kỳ
+        // myArr.splice(4, 0, "Đây là phần thử được chèn");
+        // console.log(myArr);
+        // //Thao tác xóa phần tử
+        // //Xóa ở cuối
+        // myArr.pop();
+        // //Xóa ở đầu
+        // myArr.shift();
+        // //Xóa ở vtri bất kỳ
+        // myArr.splice(4, 1, "Phần tử mới", 2);
+        // //Thao tác cập nhật phần tử
+        // myArr[1] = "Phần tử mới"
+
+        //------------------------Các phương thức khi làm việc với mảng
+        let myArr = [3, 5, 8, 11, 7];
+        //Chỉ số phần tử đầu tiên thông qua giá trị
+        let firstPosition = myArr.indexOf(8);
+        //Chỉ số phần tử cuối cùng thông qua giá trị
+        let lastPosition = myArr.lastIndexOf(8);
+        //Nối hai mảng lại với nhau
+        myArr = myArr.concat([1, 2, 3]);
+        //Chuyển mảng thành chuỗi 
+        let arrString = myArr.toString();
+        console.log(position);
+
+        myArr.map((element, index) => element * 2);
+    </script>
+</body>
+</html>

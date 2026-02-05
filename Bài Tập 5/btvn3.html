@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Bài 4</h1>
+    <script>
+        let bookId = [];
+        let id;
+        let bookName = [];
+        let name;
+        let inventoryQuantity = [];
+        let inventory;
+        let quantityBook = +prompt("Có bao nhiêu loại sách cần kiểm tra bổ xong hôm nay?");
+        while (quantityBook <= 0 || isNaN(quantityBook)) {
+            alert("Số sách cần kiểm tra không hợp lệ");
+            quantityBook = +prompt(`Nhập lại số loại sách cần kiểm tra.`);
+        }
+        for(let i = 0; i < quantityBook; i++){
+            alert(`Nhập cuốn sách thứ ${i+1}`)
+            id=prompt(`Nhập mã sách thứ ${i+1}`);
+                while (id === "" || id === null) {
+                    alert("Mã sách không được để trống!");
+                    id = prompt(`Nhập lại mã sách thứ ${i + 1}`);
+            }
+            name=prompt(`Nhập tên sách ${i+1}`);
+                while (name === "" || name === null) {
+                    alert("Tên sách không được để trống!");
+                    name = prompt(`Nhập lại tên sách ${i + 1}`);
+                }
+            inventory = +prompt(`Nhập số lượng tồn kho ${i + 1}`);
+                while (isNaN(inventory) || inventory < 0) {
+                    alert("Số lượng tồn kho phải là số và không âm!");
+                    inventory = +prompt(`Nhập lại số lượng tồn kho ${i + 1}`);
+                }
+            bookId.push(id);
+            bookName.push(name);
+            inventoryQuantity.push(inventory);
+        }
+        let count1 = 0;
+        let count2 = "";
+        for (let i = 0; i < quantityBook; i++) {
+            if(inventoryQuantity[i]<=5){
+                count1++;
+            }
+            if (inventoryQuantity[i] === 0) {
+                count2 += bookId[i];
+            }
+        }
+        console.log(`Danh sách cần xem xét bổ xung (${quantityBook})`);
+        for (let i = 0; i < quantityBook; i++){
+            console.log(`Mã: ${bookId[i]} - Tên: ${bookName[i]} - Còn: ${inventoryQuantity[i]} bản`);    
+        }
+        console.log(`Số sách có trong kho <=5 bản: ${count1} `);
+        console.log(`Các mã sách đã hết hàng(0 bản): ${count2}`);
+    </script>
+</body>
+</html>

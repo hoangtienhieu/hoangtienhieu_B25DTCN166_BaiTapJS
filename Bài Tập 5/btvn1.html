@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Bài 1</h1>
+    <script>
+        let library = [];
+        let bookName;
+        let quantityBook = +prompt(`Bạn muốn trả bao nhiêu cuốn sách`);
+
+        while (quantityBook < 0 || !Number.isInteger(quantityBook)) {
+                alert("Số sách không hợp lệ!");
+                quantityBook = +prompt("Nhập lại số sách muốn thêm!");
+        }
+        for (let i = 1; i <= quantityBook; i++) {
+            bookName=prompt(`Nhập tên cuốn sách thứ ${i}`);
+            while (bookName === "" || bookName === null) {
+                alert("Tên sách không được để trống!");
+                bookName = prompt(`Nhập lại tên cuốn sách thứ ${i + 1}:`);
+            }
+            library.push(bookName);
+        }
+        console.log("---------- THÔNG TIN TRẢ SÁCH ----------");
+        console.log(`a. Tổng số sách đã được trả: ${library.length} cuốn.`);
+        console.log(`Danh sách các cuốn sách được trả`);
+        for(let i = 0; i < library.length; i++) {
+            console.log(`${i+1}. ${library[i]}`);
+        }
+    </script>
+</body>
+</html>

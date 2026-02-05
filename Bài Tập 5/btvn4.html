@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Bài 4</h1>
+    <script>
+        let bookId=[];
+        let bookName=[];
+        let bookStatus=[];
+
+         let quantityBook = +prompt(`Có bao nhiêu loại sách cần kiểm tra tình trạng hôm nay?`);
+        while (quantityBook <= 0 || isNaN(quantityBook)) {
+            alert("Số sách cần kiểm tra không hợp lệ");
+            quantityBook = +prompt(`Nhập lại số loại sách cần kiểm tra.`);
+        }
+        for(let i = 0; i < quantityBook; i++) {
+           alert(`Nhập cuốn sách thứ ${i + 1}`)
+            let id=+prompt(`Nhập mã sách thứ ${i + 1}`);
+                while (id === "" || id === null || isNaN(id)) {
+                    alert("Mã sách không được để trống và phải là số nguyên!");
+                    id = +prompt(`Nhập lại mã sách thứ ${i + 1}`);
+            }
+            let name = prompt(`Nhập tên sách ${i+1}`);
+                while (name === "" || name === null) {
+                    alert("Tên sách không được để trống!");
+                    name = prompt(`Nhập lại tên sách ${i + 1}`);
+                }
+            let statusChoice = +prompt(`
+                Trạng thái sách
+                1 → "Hỏng nhẹ" 
+                2 → "Hỏng nặng" 
+                3 → "Cần sửa gấp"`);
+                while (isNaN(statusChoice) || statusChoice < 1 || statusChoice > 5) {
+                    alert("Trạng thái không hợp lệ");
+                    status = +prompt(`Nhập lại trạng thái cuốn sách ${i + 1}`);
+                }
+                let status = "";
+                if(statusChoice === 1) {
+                    status += "Hỏng nhẹ";
+                } else if(statusChoice === 2) {
+                    status += "Hỏng nặng";
+                } else{
+                    status += "Cần sửa gấp";
+                }
+            bookId.push(id);
+            bookName.push(name);
+            bookStatus.push(status);
+        }
+        console.log(`Danh sách hiện tại(${quantityBook} cuốn)`);
+        for (let i = 0; i < quantityBook; i++){
+            console.log(`${i+1}: ${bookId[i]} -  ${bookName[i]} - ${bookStatus[i]}`);    
+        }
+        let choice;
+        let countEdited = 0;
+        let countDel = 0;
+        do {
+            choice = +prompt(`
+            1. Sửa tình trạng sách
+            2. Loại bỏ một cuốn sách
+            0. Kết thúc và in báo cáo.`);
+            switch (choice) {
+                case 1:
+                    let editedId = +prompt("Nhập ID sách cần sửa");
+                    let flag = -1;
+                    for(let i = 0; i < bookId.length; i++) {
+                        if(bookId[i] === editedId) {
+                            flag = i;
+                            break;
+                        }
+                    }
+                    if(flag !== -1){
+                        let newStatus = +prompt(`
+                            Chọn trạng thái mới:
+                            1: Hỏng nhẹ
+                            2: Hỏng nặng
+                            3: Cần sửa gấp
+                            4: Đã sửa xong
+                            5: Loại bỏ (Chờ hủy)`);
+                        if(newStatus > 1 && newStatus < 5) {
+                            let statusNew = "";
+                            if (newStatus === 1) {
+                                statusNew = "Hỏng nhẹ";
+                            } else if (newStatus === 2) {
+                                statusNew = "Hỏng nặng"
+                            } else if (newStatus === 3) {
+                                statusNew = "Cần sửa gấp"
+                            } else if (newStatus === 4) {
+                                statusNew = "Đã sửa xong"
+                            } else {
+                                statusNew = "Loại bỏ (Chờ hủy)"
+                            }
+                            bookStatus[flag] = statusNew;
+                            alert("Cập nhật thành công");
+                            countEdited++;
+                        } else {
+                            alert("Lựa chọn không hợp lệ!Hủy thao tác sửa.")
+                        }
+                    } else {
+                        alert("Không tìm thấy mã sách!")
+                    }
+                    break;
+                case 2:
+                    let delID = +prompt("Nhập ID sách cần xóa");
+                    let flag2 = -1;
+                    for(let i = 0; i < bookId.length; i++) {
+                        if(bookId[i] === delID) {
+                            flag2 = i;
+                            break;
+                        }
+                    }
+                    if(flag2 !== -1){
+                        bookId.splice(flag2, 1);
+                        bookName.splice(flag2, 1);
+                        bookStatus.splice(flag2, 1);
+                        alert("Đã xóa sách khỏi danh sách!");
+                        countDel++;
+                    } else {
+                        alert("Không tìm thấy phần tử");
+                    }
+                    break; 
+                case 0:
+                    console.log(`
+                    Tổng số sách còn lại: ${bookId.length}
+                    Số sách đã "Đã sửa xong": ${countEdited}
+                    Số sách "Loại bỏ": ${countDel}
+                    `);
+                    if (bookId.length === 0) {
+                        console.log("Danh sách trống (Đã xóa hết).");
+                    } else {
+                        console.log("--- CHI TIẾT DANH SÁCH CÒN LẠI ---");
+                        for (let i = 0; i < bookId.length; i++) {
+                            console.log(`${i + 1}. [${bookId[i]}] ${bookName[i]} - ${bookStatus[i]}`);
+                        }
+                    }
+                    break;
+                default:
+                    alert(`Lựa chọn không phù hợp.`);
+                    break;
+            }
+        } while (choice !== 0);
+    </script>
+</body>
+</html>
