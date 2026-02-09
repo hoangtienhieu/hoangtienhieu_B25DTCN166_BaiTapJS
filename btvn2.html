@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>BTVN2</title>
+</head>
+<body>
+    <h2>Bài 2</h2>
+    <script>
+        let playerIds = ["P001", "P002", "P003"];
+        let playerNames = ["Nguyen Van A", "Tran Van B", "Le Van C"];
+        let playerJerseyNumbers = [1, 7, 10];
+        function printTeamRoster() {
+            console.log("Danh sach doi bong:");
+            for (let i = 0; i < playerIds.length; i++) {
+                console.log(
+                    (i + 1) + ". " +
+                    playerIds[i] + " - " +
+                    playerNames[i] + " - So ao: " +
+                    playerJerseyNumbers[i]
+                );
+            }
+        }
+        function updatePlayerNameAndJersey(playerId, newName, newJerseyNumber) {
+            let index = playerIds.indexOf(playerId);
+            if (index === -1) return false;
+            playerNames[index] = newName;
+            playerJerseyNumbers[index] = newJerseyNumber;
+            return true;
+        }
+        printTeamRoster();
+        let playerId = prompt("Nhap ma cau thu muon cap nhat (vi du: P001):");
+
+        if (playerIds.includes(playerId)) {
+            let newName = prompt("Nhap ten moi cho cau thu:");
+            let newJerseyNumber;
+            do {
+                newJerseyNumber = parseInt(prompt("Nhap so ao moi (1-99):"));
+            } while (isNaN(newJerseyNumber) || newJerseyNumber < 1 || newJerseyNumber > 99);
+            updatePlayerNameAndJersey(playerId, newName, newJerseyNumber);
+            printTeamRoster();
+        } else {
+            console.log("Khong tim thay cau thu voi ma nay!");
+        }
+    </script>
+</body>
+</html>

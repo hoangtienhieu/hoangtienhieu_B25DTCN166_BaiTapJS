@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>BTVN3</title>
+</head>
+<body>
+    <h2>Bài 3</h2>
+<script>
+    let players = [];
+    let n;
+    do {
+        n = parseInt(prompt("Co bao nhieu cau thu can nhap vao doi bong?"));
+    } while (isNaN(n) || n <= 0);
+    function getPosition(choice) {
+        if (choice === 1) return "Thu mon";
+        if (choice === 2) return "Hau ve";
+        if (choice === 3) return "Tien ve";
+        if (choice === 4) return "Tien dao";
+        return "";
+    }
+    for (let i = 0; i < n; i++) {
+        let id;
+        let exists;
+        do {
+            id = prompt("Nhap ma cau thu:");
+            exists = false;
+            for (let p of players) {
+                if (p.split("-")[0] === id) {
+                    exists = true;
+                    break;
+                }
+            }
+        } while (!id || exists);
+        let name;
+        do {
+            name = prompt("Nhap ten cau thu:");
+        } while (!name);
+        let posChoice;
+        do {
+            posChoice = parseInt(prompt("Nhap vi tri (1: Thu mon, 2: Hau ve, 3: Tien ve, 4: Tien dao):"));
+        } while (posChoice < 1 || posChoice > 4);
+        let position = getPosition(posChoice);
+        players.push(id + "-" + name + "-" + position);
+    }
+    function printTeamRoster() {
+        console.log("Danh sach doi bong:");
+        for (let i = 0; i < players.length; i++) {
+            let parts = players[i].split("-");
+            console.log(
+                (i + 1) + ". Ma: " + parts[0] +
+                ", Ten: " + parts[1] +
+                ", Vi tri: " + parts[2]
+            );
+        }
+    }
+    function pushPlayer(name, position) {
+        let id;
+        let exists;
+        do {
+            id = prompt("Nhap ma cau thu moi:");
+            exists = false;
+            for (let p of players) {
+                if (p.split("-")[0] === id) {
+                    exists = true;
+                    break;
+                }
+            }
+        } while (!id || exists);
+        players.push(id + "-" + name + "-" + position);
+    }
+    printTeamRoster();
+</script>
+</body>
+</html>

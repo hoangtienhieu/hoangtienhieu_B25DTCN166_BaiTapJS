@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>BTVN1</title>
+</head>
+<body>
+    <h2>Bài 1</h2>
+    <script>
+        let playerIds = [];
+        let playerPositions = [];
+        const positionMap = {
+            1: "Thủ môn",
+            2: "Hậu vệ",
+            3: "Tiền vệ",
+            4: "Tiền đạo"
+        };
+        let n = +(prompt("Có bao nhiêu cầu thủ cần nhập vào đội bóng?"));
+        for (let i = 0; i < n; i++) {
+            console.log(`Nhập cầu thủ ${i + 1}:`);
+            let id;
+            do {
+                id = prompt("Mã cầu thủ:");
+                if (playerIds.includes(id)) {
+                    alert("Mã cầu thủ đã tồn tại, vui lòng nhập lại!");
+                }
+            } while (playerIds.includes(id));
+            let positionChoice;
+            do {
+                positionChoice = +(
+                    prompt("Vị trí (1: Thủ môn 2: Hậu vệ 3: Tiền vệ 4: Tiền đạo):")
+                );
+            } while (positionChoice < 1 || positionChoice > 4);
+            playerIds.push(id);
+            playerPositions.push(positionMap[positionChoice]);
+        }
+        function printTeamRoster() {
+            console.log(`Đội bóng hiện tại (${playerIds.length} cầu thủ):`);
+            for (let i = 0; i < playerIds.length; i++) {
+                console.log(`${i + 1}. ${playerIds[i]} - ${playerPositions[i]}`);
+            }
+        }
+        function findPlayersByPosition(position) {
+            let indexes = [];
+            for (let i = 0; i < playerPositions.length; i++) {
+                if (playerPositions[i] === position) {
+                    indexes.push(i);
+                }
+            }
+            return indexes;
+        }
+        let searchChoice = +(
+            prompt("Nhập vị trí cầu thủ muốn đếm số lượng (1: Thủ môn, 2: Hậu vệ, 3: Tiền vệ, 4: Tiền đạo):")
+        );
+        let searchPosition = positionMap[searchChoice];
+        printTeamRoster();
+        let result = findPlayersByPosition(searchPosition);
+        console.log(`Số cầu thủ ở vị trí ${searchPosition}: ${result.length}`);
+        console.log(`Các chỉ số cầu thủ ở vị trí ${searchPosition}: ${result.join(", ")}`);
+    </script>
+</body>
+</html>
