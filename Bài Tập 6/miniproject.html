@@ -7,6 +7,27 @@
 </head>
 <body>
     <script>
+        let count = 0 ;
+        let account ;
+        let password ;
+        while (count < 3) {
+            account = prompt("Nhập tài khoản");
+            password = +prompt("Nhập mật khẩu");
+            if (account === "admin" && password === 12345) {
+                alert("Đăng nhập thành công");
+                break ;
+            } else if (account !== "admin") {
+                alert("Nhập sai tên đăng nhập");
+                count++;
+            } else if (password !== 12345) {
+                alert("Nhập sai mật khẩu");
+                count++;
+            }
+            if (count === 3) {
+                alert("Tài khoản đã bị khóa");
+                break ;
+            } 
+        }
         let choice;
         let libraries = ["Toán", "Văn", "Anh"];
     do {
